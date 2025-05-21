@@ -168,7 +168,7 @@ public final class Main {
      * @param word2
      * @param graph
      */
-    static void calcShortestPath(final String word1, final String word2, final Graph graph) {
+    static int calcShortestPath(final String word1, final String word2, final Graph graph) {
         boolean isWord1InGraph = graph.adjMap.containsKey(word1);
         boolean isWord2InGraph = graph.adjMap.containsKey(word2);
         if (!isWord1InGraph && !isWord2InGraph) {
@@ -216,12 +216,13 @@ public final class Main {
 
         if (!path.get(0).equals(word1)) {
             System.out.println("No path exists from \"" + word1 + "\" to \"" + word2 + "\".");
-            return;
+            return -1;
         }
 
         // Convert path to String[]
         String[] result = path.toArray(new String[0]);
         System.out.println(String.join(" -> ", result) + " (" + distances.get(word2) + ")");
+        return distances.get(word2);
     }
 
     /**
